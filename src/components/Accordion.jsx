@@ -2,10 +2,13 @@ import { useState } from "react";
 import ACCORDION_QUE_ANS from "../assets/data";
 const Accordion = () => {
   const [accordion, setaccordion] = useState(ACCORDION_QUE_ANS);
+  const [multiselection, setmultiselection] = useState(false);
   function handleaccordion(num) {
     let temp = accordion.map((accord) =>
       accord.id == num
         ? { ...accord, isDisplayed: !accord.isDisplayed }
+        : multiselection
+        ? { ...accord }
         : { ...accord, isDisplayed: false }
     );
     setaccordion(temp);
@@ -13,6 +16,14 @@ const Accordion = () => {
   return (
     <div className="justify-self-center m-28">
       <h1 className="text-center">Accordion Project</h1>
+      <button
+        className="border-2"
+        onClick={() =>
+          setmultiselection((prevmultiselection) => !prevmultiselection)
+        }
+      >
+        Enable multiselection?
+      </button>
       {accordion.map((accord) => (
         <div key={accord.id}>
           <div className="flex flex-row gap-2">

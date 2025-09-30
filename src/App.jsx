@@ -1,8 +1,9 @@
 import "./App.css";
-import Accordion from "./components/Accordion";
+// import Accordion from "./components/Accordion";
+import Onlinequiz from "./components/Onlinequiz";
 
 function App() {
-  return <Accordion />;
+  return <Onlinequiz />;
 }
 
 export default App;

@@ -1,4 +1,4 @@
-const ACCORDION_QUE_ANS = [
+export const ACCORDION_QUE_ANS = [
   {
     id: "1",
     question: "How do i displayed my Accordion FAQ on page?",
@@ -29,4 +29,50 @@ const ACCORDION_QUE_ANS = [
     isDisplayed: false,
   },
 ];
-export default ACCORDION_QUE_ANS;
+export const QUIZ_QUE_ANS = [
+  {
+    qno: 1,
+    question: "what is captail of India?",
+    options: [
+      { ans: "New Delhi", isoptionchcked: false, isanswer: true },
+      { ans: "Chennai", isoptionchcked: false, isanswer: false },
+      { ans: "Amaravathi", isoptionchcked: false, isanswer: false },
+      { ans: "Hyderabad", isoptionchcked: false, isanswer: false },
+    ],
+    answer: "New Delhi",
+  },
+  {
+    qno: 2,
+    question: "what is captail of AP?",
+    options: [
+      { ans: "New Delhi", isoptionchcked: false, isanswer: false },
+      { ans: "Chennai", isoptionchcked: false, isanswer: false },
+      { ans: "Amaravathi", isoptionchcked: false, isanswer: true },
+      { ans: "Hyderabad", isoptionchcked: false, isanswer: false },
+    ],
+    answer: "Amaravathi",
+  },
+  {
+    qno: 3,
+    question: "what is captail of Telagana?",
+    options: [
+      { ans: "New Delhi", isoptionchcked: false, isanswer: false },
+      { ans: "Chennai", isoptionchcked: false, isanswer: false },
+      { ans: "Amaravathi", isoptionchcked: false, isanswer: false },
+      { ans: "Hyderabad", isoptionchcked: false, isanswer: true },
+    ],
+    answer: "Hyderabad",
+  },
+
+  {
+    qno: 4,
+    question: "what is captail of Tamil Nadu?",
+    options: [
+      { ans: "New Delhi", isoptionchcked: false, isanswer: false },
+      { ans: "Chennai", isoptionchcked: false, isanswer: true },
+      { ans: "Amaravathi", isoptionchcked: false, isanswer: false },
+      { ans: "Hyderabad", isoptionchcked: false, isanswer: false },
+    ],
+    answer: "Chennai",
+  },
+];
