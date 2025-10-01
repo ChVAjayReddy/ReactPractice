@@ -37,10 +37,22 @@ const RandomColor = () => {
       }}
     >
       <div className="flex flex-row gap-1 justify-center">
-        <button className="border-2" onClick={() => setcolortype("HEX Color")}>
+        <button
+          className="border-2"
+          onClick={() => {
+            setcolortype("HEX Color");
+            randomvolor();
+          }}
+        >
           Create HEX Color
         </button>
-        <button className="border-2" onClick={() => setcolortype("RGB Color")}>
+        <button
+          className="border-2"
+          onClick={() => {
+            setcolortype("RGB Color");
+            randomvolor();
+          }}
+        >
           Create RGB Color
         </button>
         <button className="border-2" onClick={() => randomvolor()}>
