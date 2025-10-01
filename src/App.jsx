@@ -1,9 +1,10 @@
 import "./App.css";
 // import Accordion from "./components/Accordion";
-import Onlinequiz from "./components/Onlinequiz";
+// import Onlinequiz from "./components/Onlinequiz";
+import RandomColor from "./components/RandomColor";
 
 function App() {
-  return <Onlinequiz />;
+  return <RandomColor />;
 }
 
 export default App;

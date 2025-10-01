@@ -41,7 +41,7 @@ const Onlinequiz = () => {
         {queans.map((quiz) =>
           quiz.qno === qno ? (
             <div key={quiz.qno}>
-              <p className="bg-amber-500 h-14">{quiz.question}</p>
+              <p className="bg-amber-500 h-14 ">{quiz.question}</p>
               {quiz.options.map((option, index) => (
                 <div className="flex" key={index}>
                   <input
