@@ -1,87 +1,126 @@
 import { useState } from "react";
-
+import { IoIosBackspace } from "react-icons/io";
 const Calculator = () => {
-  const [arg1, setarg1] = useState("");
-  const [arg2, setarg2] = useState("");
-  const [op, setop] = useState("");
-  const [res, setres] = useState("");
+  const [value, setvalue] = useState("");
 
-  function addnum(num) {
-    if (op === "") {
-      let a = arg1 + num;
-      setarg1(a);
-    } else {
-      //   setarg2(arg2 + num);
-      let b = arg2 + num;
-      setarg2(b);
-    }
-    console.log(arg1, arg2);
-  }
-  function result() {
-    if (op === "add") {
-      let c = arg1 + arg2;
-      setres(c);
-    } else if (op === "sub") {
-      let c = arg1 - arg2;
-      setres(c);
-    } else if (op === "mul") {
-      let c = arg1 * arg2;
-      setres(c);
-    } else if (op === "div") {
-      let c = arg1 / arg2;
-      setres(c);
-    }
-    console.log(res);
-  }
   return (
-    <div>
-      <p>Calculator</p>
-      <button className="border-2 w-10" onClick={() => addnum(1)}>
+    <div className="flex flex-row gap-3">
+      <button
+        className="border-2 p-2"
+        value="1"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         1
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(2)}>
+      </button>
+      <button
+        className="border-2 p-2"
+        value="2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         2
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(3)}>
+      </button>
+      <button
+        value="3"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         3
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(4)}>
+      </button>
+      <button
+        value="4"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         4
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(5)}>
+      </button>
+      <button
+        value="5"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         5
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(6)}>
+      </button>
+      <button
+        value="6"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         6
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(7)}>
+      </button>
+      <button
+        value="7"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         7
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(8)}>
+      </button>
+      <button
+        value="8"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         8
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(9)}>
+      </button>
+      <button
+        value="9"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         9
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => addnum(0)}>
+      </button>
+      <button
+        value="0"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         0
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => setop("add")}>
+      </button>
+      <button
+        value="+"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         +
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => setop("sub")}>
+      </button>
+      <button
+        value="-"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         -
-      </button>{" "}
-      <button className="border-2 w-10 " onClick={() => setop("mul")}>
+      </button>
+      <button
+        value="*"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         *
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => setop("div")}>
+      </button>
+      <button
+        value="/"
+        className="border-2 p-2"
+        onClick={(e) => setvalue(value + e.target.value)}
+      >
         /
-      </button>{" "}
-      <button className="border-2 w-10" onClick={() => result()}>
+      </button>
+      <button value="CE" className="border-2 p-2" onClick={() => setvalue("")}>
+        CE
+      </button>
+      <button
+        className="border-2 p-2"
+        onClick={() => setvalue(value.slice(0, -1))}
+      >
+        <IoIosBackspace />
+      </button>
+      <button
+        value="="
+        className="border-2 p-2"
+        onClick={() => setvalue(eval(value))}
+      >
         =
       </button>
-      <p></p>
+      <p>{value}</p>
+      {console.log(typeof value)}
     </div>
   );
 };

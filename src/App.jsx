@@ -4,11 +4,11 @@ import "./App.css";
 // import RandomColor from "./components/RandomColor";
 // import StarRating from "./components/StarRAting";
 // import LoadMore from "./components/LoadMore";
-// import Calculator from "./components/Calculator";
-import ToDoList from "./components/ToDoList";
+import Calculator from "./components/Calculator";
+// import ToDoList from "./components/ToDoList";
 
 function App() {
-  return <ToDoList />;
+  return <Calculator />;
 }
 
 export default App;
