@@ -295,3 +295,46 @@ export const RESTA_DATA = [
     parkingLot: true,
   },
 ];
+export const TREE_UI_DATA = [
+  {
+    id: 1,
+    name: "Documents",
+    children: [
+      {
+        id: 2,
+        name: "Projects",
+        children: [
+          { id: 3, name: "React Project" },
+          { id: 4, name: "Node Project" },
+        ],
+      },
+      {
+        id: 5,
+        name: "Resume.pdf",
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Pictures",
+    children: [
+      { id: 7, name: "Vacation.jpg" },
+      { id: 8, name: "Family.png" },
+    ],
+  },
+  {
+    id: 9,
+    name: "Videos",
+    children: [
+      {
+        id: 10,
+        name: "Travel",
+        children: [{ id: 11, name: "Beach.mp4" }],
+      },
+    ],
+  },
+  {
+    id: 11,
+    name: "Contact",
+  },
+];
