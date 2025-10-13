@@ -8,7 +8,7 @@ const LoadMore = () => {
   const resdata = RESTA_DATA.filter((_, index) => index <= j);
 
   return (
-    <div className="grid md:grid-cols-3 sm:grid-cols-2 m-4 gap-3">
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 m-4 gap-3 bg-[#eb0808]">
       {resdata.map((resta) => (
         <div className="border-2 h-48" key={resta.restaurantID}>
           <img className="w-full h-1/2 bg-gray-800" alt="restaurant" />

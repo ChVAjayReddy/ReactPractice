@@ -3,96 +3,122 @@ import { PiTrafficSignalFill } from "react-icons/pi";
 import { IoTrainOutline } from "react-icons/io5";
 import { FaGripLines } from "react-icons/fa";
 import { LuTrainTrack } from "react-icons/lu";
-import { PiTrafficSignalBold } from "react-icons/pi";
 import { React, useState, useEffect, useRef } from "react";
 const RailwayTRack = () => {
-  let signals = [];
   let tracks = [];
-  const [train, settrain] = useState(1);
+  let train = [];
+  let emptytrack = [];
+  const [engine, setengine] = useState(0);
+  const [station, setstation] = useState(0);
+  const [stop, setstop] = useState(null);
+  const [needtostop, setneedtostop] = useState(false);
+  const [isrunning, setisrunning] = useState(true);
+  const intervalref = useRef(null);
 
-  for (let i = 1; i <= 8; i++) {
-    signals.push(
-      <PiTrafficSignalFill
-        color={
-          train - i * 5 < 0
-            ? "green"
-            : train - i * 5 >= 10
-            ? "green"
-            : train - i * 5 >= 5
-            ? "yellow"
-            : "red"
-        }
-      />
-    );
-  }
-  for (let i = 1; i <= 40; i++) {
+  for (let i = 0; i < 5; i++) {
     tracks.push(
-      train === i ? (
+      engine === i ? (
         <IoTrainOutline
           style={{
-            // transform: "rotate(270deg)",
+            transform: "rotate(270deg)",
             fontSize: "30px",
           }}
         />
       ) : (
         <LuTrainTrack
           style={{
-            transform: "rotate(135deg)",
+            transform: "rotate(45deg)",
             fontSize: "30px",
           }}
         />
       )
     );
   }
-  useEffect(() => {
-    const interval = setInterval(() => {
-      settrain((prevtrain) => prevtrain + 1);
-    }, 1000);
-    console.log(train);
-    if (train === 40) {
-      settrain(1);
+  for (let i = 0; i < 5; i++) {
+    emptytrack.push(
+      <LuTrainTrack
+        style={{
+          transform: "rotate(45deg)",
+          fontSize: "30px",
+        }}
+      />
+    );
+  }
+  for (let i = 0; i < 40; i++) {
+    let obj = {};
+    if (stop - 1 === i) {
+      obj.signal = <PiTrafficSignalFill color={"yellow"} />;
     }
-
-    return () => clearInterval(interval);
-  }, [train]);
-  const boxRef = useRef(null);
-
-  useEffect(() => {
-    const element = boxRef.current;
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      console.log("Top:", rect.top);
-    }
-  }, [train]);
-  const refs = useRef([]); // array of refs
-
-  useEffect(() => {
-    refs.current.forEach((el, index) => {
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        console.log(
-          `Train ${signals[index]} → Top: ${rect.top}, Left: ${rect.left}`
+    if (stop === i) {
+      if (needtostop) obj.signal = <PiTrafficSignalFill color={"red"} />;
+      else obj.signal = <PiTrafficSignalFill color={"green"} />;
+    } else {
+      obj.signal =
+        station - i < 0 ? (
+          <PiTrafficSignalFill color={"green"} />
+        ) : station - i >= 2 ? (
+          <PiTrafficSignalFill color={"green"} />
+        ) : station - i >= 1 ? (
+          <PiTrafficSignalFill color={"yellow"} />
+        ) : (
+          <PiTrafficSignalFill color={"red"} />
         );
-      }
-    });
-  }, [signals]);
+    }
 
+    obj.track = i === station ? tracks : emptytrack;
+    obj.station = i;
+    train.push(obj);
+  }
+  useEffect(() => {
+    if (isrunning === false && station - stop === -1 && engine === 4) {
+      clearInterval(intervalref.current);
+    } else {
+      intervalref.current = setInterval(() => {
+        setengine((prevtrain) => prevtrain + 1);
+      }, 1000);
+    }
+    if (engine === 5) {
+      setstation((prevstation) => prevstation + 1);
+      setengine(0);
+    }
+    if (station === 40) {
+      setstation(0);
+      setengine(0);
+    }
+
+    return () => clearInterval(intervalref.current);
+  }, [isrunning, engine, station, stop]);
+  function stopsignal(index) {
+    setstop(index);
+    if (stop === null) {
+      setstop(index);
+    } else {
+      setstop(null);
+    }
+
+    setneedtostop((prev) => !prev);
+    setisrunning((previsrunnunig) => !previsrunnunig);
+  }
   return (
-    <div className="flex flex-row  gap-10 mt-2.5 justify-self-center  ">
-      <div className="flex flex-col justify-evenly">
-        {signals.map((signal, index) => (
-          <div key={index} ref={(el) => (refs.current[index] = el)}>
-            {signal}
+    <div className="flex flex-row flex-wrap gap-y-20 mt-5 justify-center items-center">
+      {train.map((tr, index) => (
+        <div key={index}>
+          <div className="h-12">
+            {" "}
+            <button
+              className="cursor-pointer"
+              onClick={() => stopsignal(index)}
+            >
+              {tr.signal}
+            </button>
           </div>
-        ))}
-      </div>
-      <div className="flex flex-col flex-wrap gap-1 ">
-        {tracks.map((track, index) => (
-          <div key={index} ref={train === index ? boxRef : null}>
-            {track}
+          <div className="flex">
+            {tr.track.map((track, index) => (
+              <div key={index}>{track}</div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
