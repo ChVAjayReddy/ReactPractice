@@ -43,7 +43,10 @@ const RailwayTRack = () => {
 
         // attempt to move each train in order of their global position (furthest ahead first)
         next
-          .sort((a, b) => globalPos(b.station, b.slot) - globalPos(a.station, a.slot))
+          .sort(
+            (a, b) =>
+              globalPos(b.station, b.slot) - globalPos(a.station, a.slot)
+          )
           .forEach((t) => {
             if (!t.running) return;
 
@@ -63,7 +66,8 @@ const RailwayTRack = () => {
             for (const other of next) {
               if (other.id === t.id) continue;
               const otherPos = globalPos(other.station, other.slot);
-              const gap = (otherPos - nextPos + STATIONS * SLOTS) % (STATIONS * SLOTS);
+              const gap =
+                (otherPos - nextPos + STATIONS * SLOTS) % (STATIONS * SLOTS);
               // if another train will be within MIN_GAP slots ahead, block movement
               if (gap === 0 || gap < MIN_GAP) {
                 blocked = true;
@@ -101,7 +105,8 @@ const RailwayTRack = () => {
           for (const other of next) {
             if (other.id === t.id) continue;
             const otherPos = globalPos(other.station, other.slot);
-            const gap = (otherPos - nextPos + STATIONS * SLOTS) % (STATIONS * SLOTS);
+            const gap =
+              (otherPos - nextPos + STATIONS * SLOTS) % (STATIONS * SLOTS);
             if (gap === 0 || gap < 2) {
               followingBlocked = true;
               break;
@@ -149,7 +154,9 @@ const RailwayTRack = () => {
     const tracks = [];
     for (let s = 0; s < SLOTS; s++) {
       // check if a train occupies this station/slot
-      const occupyingTrain = trains.find((t) => t.station === i && t.slot === s);
+      const occupyingTrain = trains.find(
+        (t) => t.station === i && t.slot === s
+      );
       if (occupyingTrain) {
         tracks.push(
           <IoTrainOutline
@@ -183,7 +190,11 @@ const RailwayTRack = () => {
       else signalColor = "green";
     }
 
-    rendered.push({ station: i, tracks, signal: <PiTrafficSignalFill color={signalColor} /> });
+    rendered.push({
+      station: i,
+      tracks,
+      signal: <PiTrafficSignalFill color={signalColor} />,
+    });
   }
 
   return (
@@ -191,7 +202,10 @@ const RailwayTRack = () => {
       {rendered.map((tr, index) => (
         <div key={index}>
           <div className="h-12">
-            <button className="cursor-pointer" onClick={() => toggleStop(index)}>
+            <button
+              className="cursor-pointer"
+              onClick={() => toggleStop(index)}
+            >
               {tr.signal}
             </button>
           </div>
@@ -208,7 +222,10 @@ const RailwayTRack = () => {
         >
           {runningAll ? "Stop Trains" : "Start Trains"}
         </button>
-        <button className="border-2 cursor-pointer px-3 py-1" onClick={addNewTrain}>
+        <button
+          className="border-2 cursor-pointer px-3 py-1"
+          onClick={addNewTrain}
+        >
           Start New Train
         </button>
       </div>
