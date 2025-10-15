@@ -5,17 +5,20 @@ import { React, useState, useEffect, useRef } from "react";
 const RailwayTRack = () => {
   let engineposition0 = [];
   let train = [];
+  let stoppages = [];
   let engineposition1 = [];
   let engineposition2 = [];
   let engineposition3 = [];
   let engineposition4 = [];
   let emptytrack = [];
+  let [red, setred] = useState([]);
   const [engine, setengine] = useState(0);
   const [station, setstation] = useState(0);
   const intervalref = useRef(null);
   const [nooftrains, setnooftrains] = useState([]);
-  const [stopstation, setstopstation] = useState(null);
+  const [stopstation, setstopstation] = useState([]);
   const [engineposition, setengineposition] = useState([]);
+  const [j, setj] = useState(0);
 
   for (let i = 0; i < 5; i++) {
     engineposition0.push(
@@ -127,23 +130,27 @@ const RailwayTRack = () => {
     let obj = {};
     let temp = nooftrains.map((train) => train - 1);
     let index = nooftrains.indexOf(i);
-    if (temp.includes(i)) {
-      obj.signal = (
-        <PiTrafficSignalFill style={{ fontSize: "30px", color: "yellow" }} />
-      );
-    } else if (nooftrains.includes(i)) {
+
+    if (nooftrains.includes(i)) {
       obj.signal = (
         <PiTrafficSignalFill style={{ fontSize: "30px", color: "red" }} />
       );
+    } else if (temp.includes(i)) {
+      obj.signal = (
+        <PiTrafficSignalFill style={{ fontSize: "30px", color: "yellow" }} />
+      );
+      obj.isstop = true;
     } else {
       obj.signal = (
         <PiTrafficSignalFill style={{ fontSize: "30px", color: "green" }} />
       );
+      obj.isstop = false;
     }
-    if (i === stopstation) {
+    if (stopstation.includes(i)) {
       obj.signal = (
         <PiTrafficSignalFill style={{ fontSize: "30px", color: "red" }} />
       );
+      obj.isstop = true;
     }
 
     if (index !== -1) {
@@ -162,51 +169,81 @@ const RailwayTRack = () => {
       obj.track = emptytrack;
     }
 
-    obj.station = i;
     train.push(obj);
   }
   useEffect(() => {
     intervalref.current = setInterval(() => {
-      if (train.includes(stopstation - 1)) {
-        let temp = engineposition.map((pos) => (pos === 4 ? 4 : pos + 1));
-        setengineposition(temp);
-      } else {
-        let temp = engineposition.map((pos) => (pos === 4 ? 0 : pos + 1));
-        setengineposition(temp);
+      let temporary = [];
+      let sopping = stopstation.map((a) => a);
+
+      for (let i = 0; i < engineposition.length; i++) {
+        if (stopstation.includes(nooftrains[i])) {
+          for (let k = 0; k < engineposition.length; k++) {
+            if (i === k) {
+              engineposition[k] === 4
+                ? temporary.push(4)
+                : temporary.push(engineposition[k] + 1);
+            }
+          }
+        } else {
+          for (let k = 0; k < engineposition.length; k++) {
+            if (i === k) {
+              engineposition[k] === 4
+                ? temporary.push(0)
+                : temporary.push(engineposition[k] + 1);
+            }
+          }
+        }
       }
+      setengineposition(temporary);
+
       let indexes = engineposition
         .map((pos, index) => (pos === 4 ? index : null))
         .filter((index) => index !== null);
-
-      let temp2 = nooftrains.map((train, index) =>
-        indexes.includes(index)
-          ? train === stopstation - 1
-            ? train
-            : train + 1
-          : train
-      );
+      let temp2 = [];
+      // let temp2 = nooftrains.map((train, index) =>
+      //   indexes.includes(index)
+      //     ? train === stopstation - 1
+      //       ? train
+      //       : train + 1
+      //     : train
+      // );
+      for (let i = 0; i < nooftrains.length; i++) {
+        if (sopping.includes(nooftrains[i]) && indexes.includes(i)) {
+          temp2.push(nooftrains[i]);
+          setstopstation([...stopstation, nooftrains[i] - 1]);
+        } else if (
+          !stopstation.includes(nooftrains[i]) &&
+          indexes.includes(i)
+        ) {
+          temp2.push(nooftrains[i] + 1);
+        } else {
+          temp2.push(nooftrains[i]);
+        }
+      }
       setnooftrains(temp2);
     }, 1000);
 
     return () => clearInterval(intervalref.current);
-  }, [engine, station, nooftrains, engineposition, stopstation]);
+  }, [engine, station, nooftrains, engineposition, stopstation, red]);
 
   function addtrain() {
     setnooftrains([...nooftrains, 0]);
     setengineposition([...engineposition, 0]);
   }
-  function changesignal(index) {
-    if (stopstation === null) {
-      setstopstation(index);
+  function changesignal(ind) {
+    if (stopstation.includes(ind)) {
+      let temp = stopstation.filter((station) => station != ind);
+      setstation(temp);
     } else {
-      setstation(null);
+      setstopstation([...stopstation, ind]);
     }
   }
   return (
     <div className="flex flex-row flex-wrap gap-y-20 mt-5 justify-center items-center">
       {train.map((tr, index) => (
         <div key={index}>
-          <div className="h-12">
+          <div className="h-12 ">
             {" "}
             <button
               className="cursor-pointer"
