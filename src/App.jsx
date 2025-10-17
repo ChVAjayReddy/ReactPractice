@@ -8,6 +8,8 @@ import "./App.css";
 // import ToDoList from "./components/ToDoList";
 // import TreeUI from "./components/TreeUI";
 // import RailwayTRack from "./components/RailwayTrack";
+import Multitrack from "./components/Multitrack";
+import Sample from "./components/sample";
 
 import RailwayTRack from "./components/Tracknew";
 function App() {

@@ -5,7 +5,7 @@ import { React, useState, useEffect, useRef } from "react";
 const RailwayTRack = () => {
   let engineposition0 = [];
   let train = [];
-  let stoppages = [];
+
   let engineposition1 = [];
   let engineposition2 = [];
   let engineposition3 = [];
@@ -18,7 +18,7 @@ const RailwayTRack = () => {
   const [nooftrains, setnooftrains] = useState([]);
   const [stopstation, setstopstation] = useState([]);
   const [engineposition, setengineposition] = useState([]);
-  const [j, setj] = useState(0);
+  const [nonstop, setnonstop] = useState([]);
 
   for (let i = 0; i < 5; i++) {
     engineposition0.push(
@@ -150,8 +150,13 @@ const RailwayTRack = () => {
       obj.signal = (
         <PiTrafficSignalFill style={{ fontSize: "30px", color: "red" }} />
       );
-      obj.isstop = true;
     }
+    if (nonstop.includes(i)) {
+      obj.signal = (
+        <PiTrafficSignalFill style={{ fontSize: "30px", color: "green" }} />
+      );
+    }
+    obj.isstop = true;
 
     if (index !== -1) {
       if (engineposition[index] === 0) {
@@ -171,6 +176,7 @@ const RailwayTRack = () => {
 
     train.push(obj);
   }
+
   useEffect(() => {
     intervalref.current = setInterval(() => {
       let temporary = [];
@@ -180,9 +186,9 @@ const RailwayTRack = () => {
         if (stopstation.includes(nooftrains[i])) {
           for (let k = 0; k < engineposition.length; k++) {
             if (i === k) {
-              engineposition[k] === 4
-                ? temporary.push(4)
-                : temporary.push(engineposition[k] + 1);
+              if (engineposition[k] === 0) {
+                temporary.push(0);
+              }
             }
           }
         } else {
@@ -201,15 +207,12 @@ const RailwayTRack = () => {
         .map((pos, index) => (pos === 4 ? index : null))
         .filter((index) => index !== null);
       let temp2 = [];
-      // let temp2 = nooftrains.map((train, index) =>
-      //   indexes.includes(index)
-      //     ? train === stopstation - 1
-      //       ? train
-      //       : train + 1
-      //     : train
-      // );
+
+      let indexes2 = engineposition
+        .map((pos, index) => (pos === 0 ? index : null))
+        .filter((index) => index !== null);
       for (let i = 0; i < nooftrains.length; i++) {
-        if (sopping.includes(nooftrains[i]) && indexes.includes(i)) {
+        if (sopping.includes(nooftrains[i]) && indexes2.includes(i)) {
           temp2.push(nooftrains[i]);
           setstopstation([...stopstation, nooftrains[i] - 1]);
         } else if (
@@ -233,8 +236,11 @@ const RailwayTRack = () => {
   }
   function changesignal(ind) {
     if (stopstation.includes(ind)) {
-      let temp = stopstation.filter((station) => station != ind);
-      setstation(temp);
+      setnonstop([...nonstop, ind]);
+      let temp = stopstation
+        .filter((station) => (station === ind ? null : station))
+        .filter((index) => index !== null);
+      setstopstation(temp);
     } else {
       setstopstation([...stopstation, ind]);
     }
