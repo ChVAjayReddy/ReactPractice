@@ -338,3 +338,18 @@ export const TREE_UI_DATA = [
     name: "Contact",
   },
 ];
+export const IMAGES = [
+  {
+    url: "https://plus.unsplash.com/premium_photo-1673697239981-389164b7b87f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bmF0dXJlfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000",
+    title: "Nature Image 1",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    title: "Nature Image 2",
+  },
+  {
+    url: "https://img.freepik.com/free-photo/green-trees-near-body-water-daytime_395237-20.jpg?semt=ais_hybrid&w=740&q=80",
+    title: "Nature Image 3",
+  },
+];
+export const data = [{ name: "ajay" }, { name: "anusha" }, { name: "ravi" }];

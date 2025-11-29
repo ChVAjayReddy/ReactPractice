@@ -8,12 +8,17 @@ import "./App.css";
 // import ToDoList from "./components/ToDoList";
 // import TreeUI from "./components/TreeUI";
 // import RailwayTRack from "./components/RailwayTrack";
-import Multitrack from "./components/Multitrack";
-import Sample from "./components/sample";
-
-import RailwayTRack from "./components/Tracknew";
+// import Multitrack from "./components/Multitrack";
+// import Sample from "./components/sample";
+// import RailwayTRack from "./components/Tracknew";
+// import GKDMRK from "./components/GKD-MRK";
+// import ExpenseList from "./components/ExpenseList";
+import CounterPanel from "./components/CounterPanel";
+import Gallery from "./components/Gallery";
+import LedBulb from "./components/LedBulb";
+import Search from "./components/Search";
 function App() {
-  return <RailwayTRack />;
+  return <Search />;
 }
 
 export default App;

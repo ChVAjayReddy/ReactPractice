@@ -2,6 +2,7 @@ import { PiTrafficSignalFill } from "react-icons/pi";
 import { IoTrainOutline } from "react-icons/io5";
 import { LuTrainTrack } from "react-icons/lu";
 import { React, useState, useEffect, useRef } from "react";
+
 const RailwayTRack = () => {
   let engineposition0 = [];
   let train = [];
@@ -10,6 +11,7 @@ const RailwayTRack = () => {
   let engineposition2 = [];
   let engineposition3 = [];
   let engineposition4 = [];
+  let engineposition5 = [];
   let emptytrack = [];
   let [red, setred] = useState([]);
   const [engine, setengine] = useState(0);
@@ -20,13 +22,15 @@ const RailwayTRack = () => {
   const [engineposition, setengineposition] = useState([]);
   const [nonstop, setnonstop] = useState([]);
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     engineposition0.push(
       i === 0 ? (
         <IoTrainOutline
           style={{
             transform: "rotate(270deg)",
             fontSize: "30px",
+            color: "red",
+            boxShadow: "0 0 80 20",
           }}
         />
       ) : (
@@ -39,13 +43,14 @@ const RailwayTRack = () => {
       )
     );
   }
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     engineposition1.push(
       i === 1 ? (
         <IoTrainOutline
           style={{
             transform: "rotate(270deg)",
             fontSize: "30px",
+            color: "red",
           }}
         />
       ) : (
@@ -58,13 +63,14 @@ const RailwayTRack = () => {
       )
     );
   }
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     engineposition2.push(
       i === 2 ? (
         <IoTrainOutline
           style={{
             transform: "rotate(270deg)",
             fontSize: "30px",
+            color: "red",
           }}
         />
       ) : (
@@ -77,13 +83,14 @@ const RailwayTRack = () => {
       )
     );
   }
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     engineposition3.push(
       i === 3 ? (
         <IoTrainOutline
           style={{
             transform: "rotate(270deg)",
             fontSize: "30px",
+            color: "red",
           }}
         />
       ) : (
@@ -96,13 +103,35 @@ const RailwayTRack = () => {
       )
     );
   }
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     engineposition4.push(
       i === 4 ? (
         <IoTrainOutline
           style={{
             transform: "rotate(270deg)",
             fontSize: "30px",
+            color: "red",
+          }}
+        />
+      ) : (
+        <LuTrainTrack
+          style={{
+            transform: "rotate(45deg)",
+            fontSize: "30px",
+          }}
+        />
+      )
+    );
+  }
+  for (let i = 0; i < 6; i++) {
+    engineposition5.push(
+      i === 5 ? (
+        <IoTrainOutline
+          style={{
+            transform: "rotate(270deg)",
+            fontSize: "30px",
+            color: "red",
+            boxShadow: "0 0 80 20",
           }}
         />
       ) : (
@@ -116,7 +145,7 @@ const RailwayTRack = () => {
     );
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     emptytrack.push(
       <LuTrainTrack
         style={{
@@ -126,7 +155,7 @@ const RailwayTRack = () => {
       />
     );
   }
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 30; i++) {
     let obj = {};
     let temp = nooftrains.map((train) => train - 1);
     let index = nooftrains.indexOf(i);
@@ -169,6 +198,8 @@ const RailwayTRack = () => {
         obj.track = engineposition3;
       } else if (engineposition[index] === 4) {
         obj.track = engineposition4;
+      } else if (engineposition[index] === 5) {
+        obj.track = engineposition5;
       }
     } else {
       obj.track = emptytrack;
@@ -194,7 +225,7 @@ const RailwayTRack = () => {
         } else {
           for (let k = 0; k < engineposition.length; k++) {
             if (i === k) {
-              engineposition[k] === 4
+              engineposition[k] === 5
                 ? temporary.push(0)
                 : temporary.push(engineposition[k] + 1);
             }
@@ -204,7 +235,7 @@ const RailwayTRack = () => {
       setengineposition(temporary);
 
       let indexes = engineposition
-        .map((pos, index) => (pos === 4 ? index : null))
+        .map((pos, index) => (pos === 5 ? index : null))
         .filter((index) => index !== null);
       let temp2 = [];
 
