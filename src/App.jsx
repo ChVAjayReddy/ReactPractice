@@ -17,6 +17,7 @@ import CounterPanel from "./components/CounterPanel";
 import Gallery from "./components/Gallery";
 import LedBulb from "./components/LedBulb";
 import Search from "./components/Search";
+import Input from "./components/Input";
 function App() {
   return <Search />;
 }

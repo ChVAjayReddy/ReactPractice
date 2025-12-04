@@ -1,22 +1,24 @@
 import { useState } from "react";
 const Search = () => {
-  const data = [{ name: "ajay" }, { name: "anusha" }, { name: "ravi" }];
-  const [input, setinput] = useState();
-  let temp = data.filter((data) => (data.name.includes(input) ? data : null));
+  const [input, setinput] = useState("");
+  const users = [
+    { id: "1", name: "ajay" },
+    { id: "2", name: "anusha" },
+    { id: "3", name: "ravi" },
+    { id: "3", name: "teja" },
+  ];
+  const data = users.filter((user) =>
+    user.name.toLowerCase().includes(input.toLowerCase())
+  );
   return (
-    <div>
+    <>
       <input
         type="text"
         value={input}
         onChange={(e) => setinput(e.target.value)}
-      />
-      {data.map((data) => (
-        <p>{data.name}</p>
-      ))}
-      {temp.map((data) => (
-        <p>{data.name}</p>
-      ))}
-    </div>
+      ></input>
+      <div>{data.map((data) => data.name)}</div>
+    </>
   );
 };
 export default Search;
