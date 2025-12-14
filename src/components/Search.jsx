@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useData } from "../context/dataContext";
 const Search = () => {
   const [input, setinput] = useState("");
+  const { name, setname } = useData();
   const users = [
     { id: "1", name: "ajay" },
     { id: "2", name: "anusha" },
@@ -12,6 +14,8 @@ const Search = () => {
   );
   return (
     <>
+      <p>{name}</p>
+      <button onClick={() => setname("Reddy")}>Change Name</button>
       <input
         type="text"
         value={input}

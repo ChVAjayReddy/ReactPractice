@@ -18,8 +18,24 @@ import Gallery from "./components/Gallery";
 import LedBulb from "./components/LedBulb";
 import Search from "./components/Search";
 import Input from "./components/Input";
+import Timer from "./components/Timer";
+import AutoFocusInput from "./components/AutoFocusInput";
+import CountChar from "./components/CountChar";
+import Toggle from "./components/Toggle";
+import Todo from "./components/Todo";
+import PrimeChecker from "./components/PrimeChecker";
+import { NameProvider } from "./context/dataContext";
+import ParentComponent from "./components/ParentComponent";
+import Task1 from "./components/Task1";
+import Task2 from "./components/Task2";
+import Task3 from "./components/Task3";
+import Task4 from "./components/Task4";
 function App() {
-  return <Search />;
+  return (
+    <NameProvider>
+      <Task4 />
+    </NameProvider>
+  );
 }
 
 export default App;
