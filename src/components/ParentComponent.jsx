@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import React from "react";
 
 // const ParentComponent = () => {
@@ -33,8 +33,17 @@ import React from "react";
 //   );
 // });
 
-export default ParentComponent;
 const ParentComponent = () => {
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     console.log("Running...");
+  //   }, 1000);
+
+  //   // return () => {
+  //   //   clearInterval(timer);
+  //   // };
+  // }, []);
+
   const [count, setCount] = useState(0);
 
   const handleClick = useCallback(() => {
@@ -48,3 +57,4 @@ const ChildComponent = React.memo(({ onClick }) => {
   console.log("ChildComponent rendered");
   return <button onClick={onClick}>Click me</button>;
 });
+export default ParentComponent;

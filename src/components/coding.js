@@ -1,87 +1,44 @@
-// //🔟 Valid Parentheses
-// function isParenthesesValid(str) {
-//   let stack = [];
-//   let obj = {
-//     "]": "[",
-//     "}": "{",
-//     ")": "(",
-//   };
-//   for (let char of str) {
-//     if (char === "(" || char === "{" || char === "[") {
-//       stack.push(char);
-//     } else {
-//       if (stack[stack.length - 1] === obj[char]) {
-//         stack.pop();
-//       } else {
-//         return false;
-//       }
-//     }
-//   }
-//   return stack.length === 0;
-// }
-// console.log(isParenthesesValid("{[()]}"));
-// //8️⃣ First Non-Repeating Character
-// function firstnonrepeat(str) {
-//   let map = new Map();
-//   for (let char of str) {
-//     map.set(char, map.has(char) ? map.get(char) + 1 : 1);
-//   }
-//   for (const [key, Value] of map) {
-//     if (Value === 1) return key;
-//   }
-// }
-// console.log(firstnonrepeat("swiss"));
-// //6️⃣ Move All Zeros to End (Two Pointer)
-// function moveerostoend(arr) {
-//   let count = 0;
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] !== 0) {
-//       [arr[i], arr[count]] = [arr[count], arr[i]];
-//       count++;
-//     }
-//   }
-//   return arr;
-// }
-// console.log(moveerostoend([0, 1, 0, 3, 12]));
-// //4️⃣ Find Missing Numbers in Range
-// function findmissing(arr) {
-//   let max = Math.max(...arr);
-//   let missingdigits = max - arr.length;
-//   let result = [];
-//   for (let i = 1; i < max; i++) {
-//     if (!arr.includes(i)) {
-//       result.push(i);
-//       missingdigits--;
-//       if (missingdigits === 0) return result;
-//     }
-//   }
-// }
-// console.log(findmissing([1, 3, 4, 6]));
-// //2️⃣ Flatten Nested Array (No built-in flat)
-// function flatarray(arr) {
-//   let res = [];
-//   for (let num of arr) {
-//     if (Array.isArray(num)) {
-//       res.push(...flatarray(num));
-//     } else {
-//       res.push(num);
-//     }
-//   }
-//   return res;
-// }
-// console.log(flatarray([1, [2, [3, 4], 5], 6]));
-setTimeout(() => {
-  console.log("Step 1");
+const numbers = [45, 4, 9, 16, 25, 100, 43];
 
-  setTimeout(() => {
-    console.log("Step 2");
+// Find the largest number
+const largest = numbers.reduce(
+  (max, current) => (current > max ? current : max),
+  -Infinity
+);
 
-    setTimeout(() => {
-      console.log("Step 3");
+// Find the smallest number
+const smallest = numbers.reduce(
+  (min, current) => (current < min ? current : min),
+  Infinity
+);
 
-      setTimeout(() => {
-        console.log("Step 4");
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+console.log("Largest:", largest);
+console.log("Smallest:", smallest);
+const arrayWithDuplicates = [1, 2, 2, 3, 4, 4, 5];
+const data = arrayWithDuplicates.filter((item, index) => {
+  return arrayWithDuplicates.indexOf(item) === index;
+});
+console.log(data);
+let a = ["a", "c", "K"];
+console.log(a.sort());
+function fibonacciSeries(n) {
+  const fib = [0, 1]; // Start with the first two numbers
+  for (let i = 2; i < n; i++) {
+    // The next number is the sum of the two preceding ones
+    fib[i] = fib[i - 1] + fib[i - 2];
+  }
+  return fib; // Return the series up to n terms
+}
+
+console.log(fibonacciSeries(10));
+// Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+let rabbit = {
+  rabbitJumps: true,
+};
+let animal = {
+  animalEats: true,
+};
+Object.setPrototypeOf(rabbit, animal);
+console.log(rabbit);
+console.log(rabbit.animalEats);
+console.log(animal.rabbitJumps);

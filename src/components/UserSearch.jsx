@@ -43,6 +43,14 @@ function UserSearch() {
       {filteredUsers.map((user) => (
         <UserItem key={user.id} user={user} onSelect={handleSelect} />
       ))}
+      <div
+        style={{
+          border: "1px solid black",
+          width: "30px",
+          height: "30px",
+          rotate: "45deg",
+        }}
+      ></div>
     </>
   );
 }
