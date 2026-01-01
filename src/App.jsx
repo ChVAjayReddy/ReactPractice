@@ -32,10 +32,13 @@ import Task3 from "./components/Task3";
 import Task4 from "./components/Task4";
 import UserSearch from "./components/UserSearch";
 import SimpleForm from "./components/SimpleForm";
+import Carousel from "./components/Carousel";
+import Accord from "./components/Accord";
+import TrafficLights from "./components/TrafficLights";
 function App() {
   return (
     <NameProvider>
-      <UserSearch />
+      <TrafficLights />
     </NameProvider>
   );
 }

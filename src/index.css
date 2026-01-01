@@ -1,1 +1,9 @@
 @import "tailwindcss";
+.content {
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.item.active .content {
+  max-height: 500px; /* Adjust based on content */
+}
