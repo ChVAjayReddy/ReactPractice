@@ -35,10 +35,12 @@ import SimpleForm from "./components/SimpleForm";
 import Carousel from "./components/Carousel";
 import Accord from "./components/Accord";
 import TrafficLights from "./components/TrafficLights";
+import RollDice from "./components/RollDice";
+import AutoSearch from "./components/AutoSearch";
 function App() {
   return (
     <NameProvider>
-      <TrafficLights />
+      <AutoSearch />
     </NameProvider>
   );
 }
