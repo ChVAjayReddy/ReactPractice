@@ -1,12 +1,12 @@
 // const numbers = [45, 4, 9, 16, 25, 100, 43];
 
-// // Find the largest number
+// Find the largest number
 // const largest = numbers.reduce(
 //   (max, current) => (current > max ? current : max),
 //   -Infinity
 // );
 
-// // Find the smallest number
+// Find the smallest number
 // const smallest = numbers.reduce(
 //   (min, current) => (current < min ? current : min),
 //   Infinity

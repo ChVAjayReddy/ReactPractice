@@ -37,10 +37,12 @@ import Accord from "./components/Accord";
 import TrafficLights from "./components/TrafficLights";
 import RollDice from "./components/RollDice";
 import AutoSearch from "./components/AutoSearch";
+import AutoTimer from "./components/AutoTimer";
+import DashboardWidget from "./components/DashboardWidget";
 function App() {
   return (
     <NameProvider>
-      <AutoSearch />
+      <DashboardWidget />
     </NameProvider>
   );
 }
