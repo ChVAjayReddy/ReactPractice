@@ -1,22 +1,40 @@
 import React, { useState } from "react";
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa6";
 
 const DashboardWidget = () => {
   const widgets = [
-    { id: 1, title: "Revenue", value: 1200 },
-    { id: 2, title: "Users", value: 800 },
-    { id: 3, title: "Orders", value: 450 },
-    { id: 4, title: "Conversion Rate", value: 2.4 },
+    { id: 1, title: "Revenue", value: 1200, favourite: false },
+    { id: 2, title: "Users", value: 800, favourite: false },
+    { id: 3, title: "Orders", value: 450, favourite: false },
+    { id: 4, title: "Conversion Rate", value: 2.4, favourite: false },
   ];
   const [data, setdata] = useState(widgets);
   const [Search, setSearch] = useState("");
 
-  function handleSearch(e) {
-    let temp = data.filter((widget) => widget.title.includes(e));
+  function handleSearch(query) {
+    const q = (query || "").toString().trim().toLowerCase();
+    if (!q) {
+      setdata(widgets);
+      return;
+    }
+    const temp = widgets.filter((widget) =>
+      widget.title.toLowerCase().includes(q)
+    );
     setdata(temp);
   }
   function sorting() {
     let temp = data.sort((a, b) => a.value - b.value);
     setdata([...temp]);
+  }
+  function handleFavourite(id) {
+    const temp = data.map((widget) => {
+      if (widget.id === id) {
+        return { ...widget, favourite: !widget.favourite };
+      }
+      return widget;
+    });
+    setdata(temp);
   }
 
   return (
@@ -48,6 +66,10 @@ const DashboardWidget = () => {
             <p>{widget.id}</p>
             <p>{widget.title}</p>
             <p>{widget.value}</p>
+            <button onClick={() => handleFavourite(widget.id)}>
+              {" "}
+              {widget.favourite ? <FaStar /> : <CiStar />}
+            </button>
           </div>
         ))}
       </div>
