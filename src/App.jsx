@@ -39,10 +39,11 @@ import RollDice from "./components/RollDice";
 import AutoSearch from "./components/AutoSearch";
 import AutoTimer from "./components/AutoTimer";
 import DashboardWidget from "./components/DashboardWidget";
+import Signal from "./components/Signal";
 function App() {
   return (
     <NameProvider>
-      <DashboardWidget />
+      <Signal />
     </NameProvider>
   );
 }
