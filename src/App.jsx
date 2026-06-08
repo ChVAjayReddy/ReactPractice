@@ -3,7 +3,7 @@ import "./App.css";
 // import Onlinequiz from "./components/Onlinequiz";
 // import RandomColor from "./components/RandomColor";
 // import StarRating from "./components/StarRAting";
-// import LoadMore from "./components/LoadMore";
+import LoadMore from "./components/LoadMore";
 // import Calculator from "./components/Calculator";
 // import ToDoList from "./components/ToDoList";
 // import TreeUI from "./components/TreeUI";
@@ -40,12 +40,17 @@ import AutoSearch from "./components/AutoSearch";
 import AutoTimer from "./components/AutoTimer";
 import DashboardWidget from "./components/DashboardWidget";
 import Signal from "./components/Signal";
+import Quiz from "./components/Quiz";
+import App1 from "./components/App1";
+import Practice from "./components/Practice";
+import DigitalClock from "./components/DigitalClock";
+import AutoLogout from "./components/AutoLogout";
+import WindowWidthTracker from "./components/WindowWidthTracker";
 function App() {
   return (
-    <NameProvider>
-      <Signal />
-    </NameProvider>
+    <div>
+      <WindowWidthTracker />
+    </div>
   );
 }
-
 export default App;
